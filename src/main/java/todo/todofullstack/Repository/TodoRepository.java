@@ -6,4 +6,5 @@ import todo.todofullstack.Documents.TodoModel;
 
 @Repository
 public interface TodoRepository extends MongoRepository<TodoModel, String> {
+
 }
