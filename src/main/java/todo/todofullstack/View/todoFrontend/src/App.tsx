@@ -6,7 +6,7 @@ import { ListTypes } from "./Interfaces/ListTypes";
 import ShowMyEntriesComponent from "./Components/ShowMyEntriesComponent";
 
 function App() {
-  const [entries, setMyEntries] = useState<ListTypes[]>([]);
+  const [entries, setEntries] = useState<ListTypes[]>([]);
 
   const [user, setUser] = useState("Oskar");
 
@@ -21,7 +21,7 @@ function App() {
       const response = await axios.get(`${URL}/get-all-entries`);
 
       if (response.status === 200) {
-        setMyEntries(response.data.entries);
+        setEntries(response.data.entries);
         console.log(response.data.message);
       } else {
         console.log(`Unexpected status code: ${response.status}`);
@@ -81,10 +81,10 @@ function App() {
 
       <br />
       <div>
-        {entries.map((singelEntryObject) => (
+        {entries.map((singleEntryObject) => (
           <ShowMyEntriesComponent
-            key={singelEntryObject.id}
-            singelEntryParamter={singelEntryObject}
+            key={singleEntryObject.id}
+            singleEntryParameter={singleEntryObject}
           />
         ))}
       </div>
