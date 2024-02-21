@@ -6,7 +6,7 @@ import { ListTypes } from "./Interfaces/ListTypes";
 import ShowMyEntriesComponent from "./Components/ShowMyEntriesComponent";
 
 function App() {
-  const [myEntries, setMyEntries] = useState<ListTypes[]>([]);
+  const [entries, setMyEntries] = useState<ListTypes[]>([]);
 
   const [user, setUser] = useState("Oskar");
 
@@ -81,10 +81,10 @@ function App() {
 
       <br />
       <div>
-        {myEntries.map((singelEntry) => (
+        {entries.map((singelEntryObject) => (
           <ShowMyEntriesComponent
-            key={singelEntry.id}
-            showSingelEntryParamter={singelEntry}
+            key={singelEntryObject.id}
+            singelEntryParamter={singelEntryObject}
           />
         ))}
       </div>

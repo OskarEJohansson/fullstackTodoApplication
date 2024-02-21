@@ -1,21 +1,18 @@
 import { ListTypes } from "../Interfaces/ListTypes";
 
 interface showMyEntriesInterface {
-  showSingelEntryParamter: ListTypes;
+  singelEntryParamter: ListTypes;
 }
 
 function ShowMyEntriesComponent({
-  showSingelEntryParamter,
+  singelEntryParamter,
 }: showMyEntriesInterface) {
   try {
     return (
       <div>
-        <p>{showSingelEntryParamter.user}</p>
-        <p>{showSingelEntryParamter.text}</p>
-        <input
-          type="checkbox"
-          checked={showSingelEntryParamter.taskCompleted}
-        />
+        <p>{singelEntryParamter.user}</p>
+        <p>{singelEntryParamter.text}</p>
+        <input type="checkbox" checked={singelEntryParamter.taskCompleted} />
       </div>
     );
   } catch (error) {
