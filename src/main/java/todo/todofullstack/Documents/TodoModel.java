@@ -1,17 +1,18 @@
 package todo.todofullstack.Documents;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 
 @Document(collection = "TodoRepository")
-public class TodoModel {
-
-    @Id
-    private String id;
-    private String user;
-    private String text;
-    private boolean taskCompleted;
+public record TodoModel(
+        @Id String id,
+        String user,
+        String text,
+        Boolean taskCompleted,
+        LocalDateTime localDateTime) {
 }
-
 

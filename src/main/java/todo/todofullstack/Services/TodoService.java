@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import todo.todofullstack.Documents.TodoModel;
 import todo.todofullstack.Repository.TodoRepository;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 @Service
 public class TodoService {
 
@@ -15,8 +18,13 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public void saveTodoEntry(TodoModel todoModel){
+    public void saveTodoEntry( TodoModel todoModel){
         todoRepository.save(todoModel);
+    }
 
+    public ArrayList<TodoModel> getAllEntries(){
+        ArrayList<TodoModel> allEntriesInStore = (ArrayList<TodoModel>) todoRepository.findAll();
+
+        return allEntriesInStore;
     }
 }

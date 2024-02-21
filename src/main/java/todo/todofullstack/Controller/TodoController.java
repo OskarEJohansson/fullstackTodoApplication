@@ -2,11 +2,12 @@ package todo.todofullstack.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.*;
 import todo.todofullstack.Documents.TodoModel;
 import todo.todofullstack.Services.TodoService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,27 +15,44 @@ import java.util.Map;
 @RestController
 public class TodoController {
 
-    Map<String, String> responsbody = new HashMap<>();
-
     @Autowired
     private TodoService todoService;
 
-
     @PostMapping("/api/save-entry")
-    public ResponseEntity<Map<String, String>> saveTodoEntry(@RequestBody TodoModel todoModel){
-        try{
-            todoService.saveTodoEntry(todoModel);
+    public ResponseEntity<Map<String, String>> saveTodoEntry(@RequestBody TodoModel todoModel) {
 
+        Map<String, String> responsbody = new HashMap<>();
+
+        try {
+            todoService.saveTodoEntry(todoModel);
             responsbody.put("message", "Entry saved successfully");
+
             return ResponseEntity.ok(responsbody);
-        }catch (Exception e){
+
+        } catch (Exception e) {
             responsbody.put("message", e.getMessage());
+
             return ResponseEntity.badRequest().body(responsbody);
 
         }
     }
 
-//    @GetMapping("/api/get-entry")
-//    public ResponseEntity
+    @GetMapping("/api/get-all-entries")
+    public ResponseEntity<Map<String, Object>> getAllEntries() {
 
+        Map<String, Object> getAllRespons = new HashMap<>();
+
+        try {
+            ArrayList allEntries = todoService.getAllEntries();
+            getAllRespons.put("message", "All entries loaded");
+            getAllRespons.put("entries", allEntries);
+
+            return ResponseEntity.ok(getAllRespons);
+
+        } catch (Exception e) {
+            getAllRespons.put("message", e.getMessage());
+
+            return ResponseEntity.badRequest().body(getAllRespons);
+        }
+    }
 }
