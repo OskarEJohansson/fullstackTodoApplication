@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./App.css";
 import { ListTypes } from "./Interfaces/ListTypes";
-import ShowMyEntriesComponent from "./Components/ShowMyEntriesComponent";
+import ShowEntriesComponent from "./Components/ShowEntriesComponent";
 
 function App() {
   const [entries, setEntries] = useState<ListTypes[]>([]);
@@ -82,7 +82,7 @@ function App() {
       <br />
       <div>
         {entries.map((singleEntryObject) => (
-          <ShowMyEntriesComponent
+          <ShowEntriesComponent
             key={singleEntryObject.id}
             singleEntryParameter={singleEntryObject}
           />

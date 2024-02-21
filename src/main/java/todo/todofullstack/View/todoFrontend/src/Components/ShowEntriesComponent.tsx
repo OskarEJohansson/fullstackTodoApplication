@@ -1,12 +1,10 @@
 import { ListTypes } from "../Interfaces/ListTypes";
 
-interface showMyEntriesInterface {
+interface showEntriesInterface {
   singleEntryParameter: ListTypes;
 }
 
-function ShowMyEntriesComponent({
-  singleEntryParameter,
-}: showMyEntriesInterface) {
+function ShowEntriesComponent({ singleEntryParameter }: showEntriesInterface) {
   try {
     return (
       <div>
@@ -20,4 +18,4 @@ function ShowMyEntriesComponent({
   }
 }
 
-export default ShowMyEntriesComponent;
+export default ShowEntriesComponent;
