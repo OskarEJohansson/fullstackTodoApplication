@@ -39,8 +39,8 @@ function App() {
     if (!newEntry) return;
 
     const requestBody = {
-      user: `"${user}"`,
-      text: `"${newEntry}"`,
+      user: `${user}`,
+      text: `${newEntry}`,
       taskCompleted: false,
       localDateTime: new Date().toISOString(),
     };
@@ -66,6 +66,13 @@ function App() {
   return (
     <>
       <h1>My Notes</h1>
+      <input
+        type="text"
+        value={user}
+        onChange={(e) => setUser(e.target.value)}
+        placeholder="Add Todo Text"
+      />
+
       <br />
       <input
         type="text"

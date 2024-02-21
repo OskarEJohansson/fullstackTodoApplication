@@ -10,6 +10,7 @@ import todo.todofullstack.Services.TodoService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -53,6 +54,34 @@ public class TodoController {
             getAllRespons.put("message", e.getMessage());
 
             return ResponseEntity.badRequest().body(getAllRespons);
+        }
+    }
+
+    @GetMapping("/api/get-entry/{id}")
+    public ResponseEntity<Map<String, Object>> getEntryById(@PathVariable String id) {
+
+        Map<String, Object> getEntryByIdResponse = new HashMap<>();
+
+        try {
+            Optional<TodoModel> entryById = todoService.getEntryById(id);
+
+
+            System.out.println(entryById.toString());
+
+            if(entryById.isPresent()){
+                getEntryByIdResponse.put("message", "Entry ID found");
+                getEntryByIdResponse.put("entry", entryById);
+
+                return ResponseEntity.ok(getEntryByIdResponse);
+            }else {
+                getEntryByIdResponse.put("message", "Entry not found");
+                return ResponseEntity.badRequest().body(getEntryByIdResponse);
+            }
+
+
+        } catch (Exception e) {
+            getEntryByIdResponse.put("message", e.getMessage());
+            return ResponseEntity.badRequest().body(getEntryByIdResponse);
         }
     }
 }

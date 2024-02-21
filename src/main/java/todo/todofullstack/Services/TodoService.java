@@ -1,12 +1,14 @@
 package todo.todofullstack.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import todo.todofullstack.Documents.TodoModel;
 import todo.todofullstack.Repository.TodoRepository;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -26,5 +28,12 @@ public class TodoService {
         ArrayList<TodoModel> allEntriesInStore = (ArrayList<TodoModel>) todoRepository.findAll();
 
         return allEntriesInStore;
+    }
+
+    public Optional<TodoModel> getEntryById(String id) {
+
+        Optional<TodoModel> todoEntry = todoRepository.findById(id);
+
+        return  todoEntry;
     }
 }
