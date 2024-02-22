@@ -1,6 +1,7 @@
 package todo.todofullstack.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import todo.todofullstack.Documents.TodoModel;
@@ -20,20 +21,38 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public void saveTodoEntry( TodoModel todoModel){
+    public void saveTodoEntry(TodoModel todoModel) {
         todoRepository.save(todoModel);
     }
 
-    public ArrayList<TodoModel> getAllEntries(){
+    public ArrayList<TodoModel> getAllEntries() {
         ArrayList<TodoModel> allEntriesInStore = (ArrayList<TodoModel>) todoRepository.findAll();
 
         return allEntriesInStore;
     }
 
-    public Optional<TodoModel> getEntryById(String id) {
+    public Optional<TodoModel> findEntryById(String id) {
 
-        Optional<TodoModel> todoEntry = todoRepository.findById(id);
+        try {
+            Optional<TodoModel> todoEntry = todoRepository.findById(id);
 
-        return  todoEntry;
+            return todoEntry;
+
+        }catch (EmptyResultDataAccessException ex){
+            return Optional.empty();
+        }
+    }
+
+    public boolean deleteEntryById(String id) {
+
+        try {
+            if(todoRepository.existsById(id)){
+                todoRepository.deleteById(id);
+                return true;
+            }else return false;
+
+        } catch (EmptyResultDataAccessException ex) {
+            return false;
+        }
     }
 }

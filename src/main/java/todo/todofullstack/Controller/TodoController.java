@@ -1,6 +1,7 @@
 package todo.todofullstack.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -63,17 +64,18 @@ public class TodoController {
         Map<String, Object> getEntryByIdResponse = new HashMap<>();
 
         try {
-            Optional<TodoModel> entryById = todoService.getEntryById(id);
+            Optional<TodoModel> entryById = todoService.findEntryById(id);
 
 
             System.out.println(entryById.toString());
 
-            if(entryById.isPresent()){
+            if (entryById.isPresent()) {
                 getEntryByIdResponse.put("message", "Entry ID found");
                 getEntryByIdResponse.put("entry", entryById);
 
                 return ResponseEntity.ok(getEntryByIdResponse);
-            }else {
+
+            } else {
                 getEntryByIdResponse.put("message", "Entry not found");
                 return ResponseEntity.badRequest().body(getEntryByIdResponse);
             }
@@ -82,6 +84,29 @@ public class TodoController {
         } catch (Exception e) {
             getEntryByIdResponse.put("message", e.getMessage());
             return ResponseEntity.badRequest().body(getEntryByIdResponse);
+        }
+    }
+
+    @DeleteMapping("api/delete-entry/{id}")
+    public ResponseEntity<Map<String, String>> deleteEntryById(@PathVariable String id) {
+        Map<String, String> deleteEntryByIdResponse = new HashMap<>();
+        try {
+
+
+            if(todoService.deleteEntryById(id)){
+                deleteEntryByIdResponse.put("message", "Entry deleted successfully");
+                return ResponseEntity.ok(deleteEntryByIdResponse);
+
+            } else {
+
+                deleteEntryByIdResponse.put("message", "Entry not found by ID");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(deleteEntryByIdResponse);
+            }
+
+        } catch (Exception e) {
+
+            deleteEntryByIdResponse.put("message", e.getMessage());
+            return ResponseEntity.badRequest().body(deleteEntryByIdResponse);
         }
     }
 }
