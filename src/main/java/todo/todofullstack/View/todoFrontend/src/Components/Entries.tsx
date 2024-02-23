@@ -22,26 +22,43 @@ function Entries({ singleEntryParameter }: EntriesInterface) {
     }
   };
 
+  const isTaskCompleted = async () => {
+    const requestBody = !singleEntryParameter.taskCompleted;
+    const response = await axios.put(
+      `${URL}/CREATE-ENDPOINT/${singleEntryParameter.id}`,
+      requestBody
+    );
+
+    if (response.status === 200) {
+      apiFunctions.updateEntry(
+        singleEntryParameter.id,
+        singleEntryParameter.taskCompleted
+      );
+    }
+  };
+
   try {
     return (
       <div className="entries">
-        <fieldset>
-          <p>User: {singleEntryParameter.user}</p>
+        <p>User: {singleEntryParameter.user}</p>
+        <fieldset className="entries">
           <div>
-            {" "}
             <p>Task</p>
             <p>{singleEntryParameter.text}</p>
           </div>
           <div>
-            <p>Task Completed</p>
-            <input
-              type="checkbox"
-              checked={singleEntryParameter.taskCompleted}
-            />
+            <p>
+              Completed{" "}
+              <input
+                type="checkbox"
+                checked={singleEntryParameter.taskCompleted}
+                onChange={isTaskCompleted}
+              />
+            </p>
           </div>
-
-          <p onClick={deleteEntry}>Delete entry</p>
         </fieldset>
+
+        <button onClick={deleteEntry}>Delete entry</button>
       </div>
     );
   } catch (error) {

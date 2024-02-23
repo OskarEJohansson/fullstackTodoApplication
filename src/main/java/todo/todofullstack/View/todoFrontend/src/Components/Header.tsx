@@ -1,14 +1,12 @@
-// import { useNavigate } from "react-router-dom";
+const HeaderNav = () => {
+  return (
+    <nav className="header-app">
+      <button>Home</button>
+      <button>
+        Enter User Name to see User specific Notes <input type="text" />{" "}
+      </button>
+    </nav>
+  );
+};
 
-// const Header = () => {
-
-// const navigate = useNavigate
-
-//   return <nav>
-//     <button onClick={() => navigate.path("/")}>Home</button>
-//     <button onClick={() => navigate.path(/noteboard/}>Enter User Name to see your Notes <input value="text"></button>
-//     <button></button>
-//   </nav>;
-// };
-
-// export default Header;
+export default HeaderNav;

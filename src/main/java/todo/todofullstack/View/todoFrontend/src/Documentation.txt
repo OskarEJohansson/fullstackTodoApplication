@@ -10,11 +10,9 @@ Add update Entry functionallity
 
 ###
 
-Add functionallity to show new entry when added automatically
-
 ###
 
-Structure Nagivate
+Structure Nagivate and build Header Nav
 
 ###
 
@@ -26,14 +24,7 @@ Create Filter function to show entries from specific user
 
 ### BACKEND ###
 
-Add Entry-data to Endpoint respons
-
-{
-      user: ,
-      text: ,
-      taskCompleted: ,
-      localDateTime: ,
-}
+Build the PUT backend API for changing taskCompleted and change to correct URLadress in entries-function isTaskCompleted.
 
 ###
 

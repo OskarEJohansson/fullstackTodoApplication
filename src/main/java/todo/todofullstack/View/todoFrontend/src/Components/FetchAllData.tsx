@@ -1,5 +1,7 @@
 import axios from "axios";
 import useGlobalState from "../GlobalState";
+import { useEffect } from "react";
+useEffect;
 
 const URL = "http://localhost:8080/api";
 

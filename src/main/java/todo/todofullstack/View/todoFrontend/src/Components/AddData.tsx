@@ -3,9 +3,9 @@ import axios from "axios";
 import useGlobalState from "../GlobalState";
 import { useNavigate } from "react-router-dom";
 
-function AddData() {
+const AddData = () => {
   const apiFunctions = useGlobalState((state) => state);
-  const [user, setUser] = useState("Oskar");
+  const [user, setUser] = useState("");
   const [newEntry, setNewEntry] = useState("");
   const navigate = useNavigate();
 
@@ -35,30 +35,29 @@ function AddData() {
   };
 
   return (
-    <div>
+    <div className="addData">
       <input
         type="text"
         value={user}
         onChange={(e) => setUser(e.target.value)}
-        placeholder="Add Todo Text"
+        placeholder="Add User"
       />
-
       <br />
       <input
         type="text"
         value={newEntry}
         onChange={(e) => setNewEntry(e.target.value)}
-        placeholder="Add Todo Text"
+        placeholder="Add Note"
       />
-
       <br />
       <button className="btn-add" onClick={saveNewEntry}>
         Lägg till Todo
       </button>
+      <br />
 
       <button onClick={() => navigate("/")}>Back to Main page</button>
     </div>
   );
-}
+};
 
 export default AddData;
