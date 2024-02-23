@@ -21,13 +21,14 @@ public class TodoController {
     private TodoService todoService;
 
     @PostMapping("/api/save-entry")
-    public ResponseEntity<Map<String, String>> saveTodoEntry(@RequestBody TodoModel todoModel) {
+    public ResponseEntity<Map<String, Object>> saveTodoEntry(@RequestBody TodoModel todoModel) {
 
-        Map<String, String> responsbody = new HashMap<>();
+        Map<String, Object> responsbody = new HashMap<>();
 
         try {
-            todoService.saveTodoEntry(todoModel);
+            TodoModel savedEntry = todoService.saveTodoEntry(todoModel);
             responsbody.put("message", "Entry saved successfully");
+            responsbody.put("savedEntry", savedEntry);
 
             return ResponseEntity.ok(responsbody);
 

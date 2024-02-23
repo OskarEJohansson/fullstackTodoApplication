@@ -1,0 +1,43 @@
+
+
+### 
+
+Add functionallity to taskCompleted
+
+###
+
+Add update Entry functionallity
+
+###
+
+Add functionallity to show new entry when added automatically
+
+###
+
+Structure Nagivate
+
+###
+
+Add .css
+
+### 
+
+Create Filter function to show entries from specific user
+
+### BACKEND ###
+
+Add Entry-data to Endpoint respons
+
+{
+      user: ,
+      text: ,
+      taskCompleted: ,
+      localDateTime: ,
+}
+
+###
+
+
+
+###
+

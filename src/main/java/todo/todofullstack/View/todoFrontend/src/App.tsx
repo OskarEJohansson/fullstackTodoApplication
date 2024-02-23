@@ -10,6 +10,7 @@ function App() {
 
   return (
     <>
+      <div>Welcome to your Notes </div>
       <div>
         {apiFunctions.entries.map((singleEntryObject) => (
           <Entries

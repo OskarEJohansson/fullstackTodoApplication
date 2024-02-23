@@ -1,9 +1,8 @@
 import { ListTypes } from "../Interfaces/ListTypes";
 import axios from "axios";
 import useGlobalState from "../GlobalState";
-import { useEffect } from "react";
 
-// Ideomatisk namngivning, kompoonenter är, inte gör!
+// Ideomatisk namngivning; Kompoonenter är, de "gör" inte!
 
 interface EntriesInterface {
   singleEntryParameter: ListTypes;
@@ -25,11 +24,24 @@ function Entries({ singleEntryParameter }: EntriesInterface) {
 
   try {
     return (
-      <div>
-        <p>{singleEntryParameter.user}</p>
-        <p>{singleEntryParameter.text}</p>
-        <input type="checkbox" checked={singleEntryParameter.taskCompleted} />
-        <p onClick={deleteEntry}>X</p>
+      <div className="entries">
+        <fieldset>
+          <p>User: {singleEntryParameter.user}</p>
+          <div>
+            {" "}
+            <p>Task</p>
+            <p>{singleEntryParameter.text}</p>
+          </div>
+          <div>
+            <p>Task Completed</p>
+            <input
+              type="checkbox"
+              checked={singleEntryParameter.taskCompleted}
+            />
+          </div>
+
+          <p onClick={deleteEntry}>Delete entry</p>
+        </fieldset>
       </div>
     );
   } catch (error) {

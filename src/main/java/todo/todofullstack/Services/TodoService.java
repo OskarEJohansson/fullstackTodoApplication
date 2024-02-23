@@ -2,12 +2,10 @@ package todo.todofullstack.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import todo.todofullstack.Documents.TodoModel;
 import todo.todofullstack.Repository.TodoRepository;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -21,8 +19,11 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public void saveTodoEntry(TodoModel todoModel) {
-        todoRepository.save(todoModel);
+    public TodoModel saveTodoEntry(TodoModel todoModel) {
+
+        TodoModel savedEntry = todoRepository.save(todoModel);
+
+        return savedEntry;
     }
 
     public ArrayList<TodoModel> getAllEntries() {
@@ -55,4 +56,5 @@ public class TodoService {
             return false;
         }
     }
+
 }

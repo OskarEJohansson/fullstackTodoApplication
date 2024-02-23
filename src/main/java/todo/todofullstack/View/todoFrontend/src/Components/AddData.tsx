@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import useGlobalState from "../GlobalState";
+import { useNavigate } from "react-router-dom";
 
 function AddData() {
   const apiFunctions = useGlobalState((state) => state);
   const [user, setUser] = useState("Oskar");
   const [newEntry, setNewEntry] = useState("");
+  const navigate = useNavigate();
 
   const URL = "http://localhost:8080/api";
 
@@ -27,8 +29,7 @@ function AddData() {
 
     if (response.status === 200) {
       alert("Entry  saved!");
-
-      apiFunctions.addEntry(response.data);
+      apiFunctions.addEntry(response.data.savedEntry);
       setNewEntry("");
     } else alert("Entry not saved");
   };
@@ -54,6 +55,8 @@ function AddData() {
       <button className="btn-add" onClick={saveNewEntry}>
         Lägg till Todo
       </button>
+
+      <button onClick={() => navigate("/")}>Back to Main page</button>
     </div>
   );
 }
