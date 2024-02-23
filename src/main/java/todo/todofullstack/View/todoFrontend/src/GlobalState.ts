@@ -1,17 +1,17 @@
 import { create } from "zustand";
-import { ListTypes } from "./Interfaces/ListTypes";
+import { NoteTypes } from "./types";
 
 interface GlobalStateInterface {
-  entries: ListTypes[];
-  addEntry: (saveNewEntry: ListTypes) => void;
+  entries: NoteTypes[];
+  addEntry: (saveNewEntry: NoteTypes) => void;
   removeEntry: (id: string) => void;
   updateEntry: (id: string, taskCompleted?: boolean) => void;
-  setEntries: (setNewEntries: ListTypes[]) => void;
+  setEntries: (setNewEntries: NoteTypes[]) => void;
 }
 
 const useGlobalState = create<GlobalStateInterface>((set) => ({
   entries: [],
-  addEntry: (saveNewEntry: ListTypes) =>
+  addEntry: (saveNewEntry: NoteTypes) =>
     set((state) => ({
       entries: [...state.entries, saveNewEntry],
     })),
@@ -36,7 +36,7 @@ const useGlobalState = create<GlobalStateInterface>((set) => ({
       }),
     })),
 
-  setEntries: (setNewEntries: ListTypes[]) =>
+  setEntries: (setNewEntries: NoteTypes[]) =>
     set(() => ({
       entries: setNewEntries,
     })),

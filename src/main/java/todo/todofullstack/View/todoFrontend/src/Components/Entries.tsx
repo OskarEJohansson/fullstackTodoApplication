@@ -1,14 +1,14 @@
-import { ListTypes } from "../Interfaces/ListTypes";
+import { NoteTypes } from "../types";
 import axios from "axios";
 import useGlobalState from "../GlobalState";
 
 // Ideomatisk namngivning; Kompoonenter är, de "gör" inte!
 
 interface EntriesInterface {
-  singleEntryParameter: ListTypes;
+  singleEntryParameter: NoteTypes;
 }
 
-function Entries({ singleEntryParameter }: EntriesInterface) {
+const Entries = ({ singleEntryParameter }: EntriesInterface) => {
   const apiFunctions = useGlobalState((state) => state);
   const URL = "http://localhost:8080/api";
 
@@ -64,6 +64,6 @@ function Entries({ singleEntryParameter }: EntriesInterface) {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export default Entries;

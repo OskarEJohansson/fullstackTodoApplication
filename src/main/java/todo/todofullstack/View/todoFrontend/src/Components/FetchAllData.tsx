@@ -24,6 +24,10 @@ const FetchAllDataComponent = () => {
     }
   };
 
+  useEffect(() => {
+    fetchAllDataFunction();
+  }, []);
+
   return <button onClick={fetchAllDataFunction}>Hämta Data</button>;
 };
 

@@ -1,4 +1,4 @@
-export interface ListTypes {
+export interface NoteTypes {
   id: string;
   user: string;
   text: string;
