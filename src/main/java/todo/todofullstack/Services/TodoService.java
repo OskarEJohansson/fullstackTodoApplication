@@ -1,9 +1,11 @@
 package todo.todofullstack.Services;
 
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import todo.todofullstack.Documents.TodoModel;
+import todo.todofullstack.Repository.CustomTodoRepository;
 import todo.todofullstack.Repository.TodoRepository;
 
 import java.util.ArrayList;
@@ -13,10 +15,12 @@ import java.util.Optional;
 public class TodoService {
 
     private final TodoRepository todoRepository;
+    private final CustomTodoRepository customTodoRepository;
 
     @Autowired
-    public TodoService(TodoRepository todoRepository) {
+    public TodoService(TodoRepository todoRepository, CustomTodoRepository customTodoRepository) {
         this.todoRepository = todoRepository;
+        this.customTodoRepository = customTodoRepository;
     }
 
     public TodoModel saveTodoEntry(TodoModel todoModel) {
@@ -42,6 +46,18 @@ public class TodoService {
         }catch (EmptyResultDataAccessException ex){
             return Optional.empty();
         }
+    }
+
+    public boolean updateEntryById(String id){
+
+        try{
+            if(customTodoRepository.toggleTaskCompleted(id).wasAcknowledged()) {
+                return true;
+            }
+        }catch(EmptyResultDataAccessException ex) {
+            return false;
+        }
+        return false;
     }
 
     public boolean deleteEntryById(String id) {

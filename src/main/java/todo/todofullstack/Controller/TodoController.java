@@ -88,6 +88,28 @@ public class TodoController {
         }
     }
 
+
+    @PutMapping("api/update-entry/{id}")
+    public ResponseEntity<Map<String, Object>> updateEntryById(@PathVariable String id, @RequestBody TodoModel todoModel){
+        Map<String, Object> updateEntryByIdResponse = new HashMap<>();
+
+        try {
+            if(todoService.updateEntryById(todoModel.id())){
+                updateEntryByIdResponse.put("message", "Update of object successful");
+                return ResponseEntity.ok(updateEntryByIdResponse);
+            }
+
+            updateEntryByIdResponse.put("message", "Entry not found");
+            return ResponseEntity.badRequest().body(updateEntryByIdResponse);
+
+        }catch(Exception e) {
+            updateEntryByIdResponse.put("message", e.getMessage());
+            return ResponseEntity.badRequest().body(updateEntryByIdResponse);
+        }
+
+    }
+
+
     @DeleteMapping("api/delete-entry/{id}")
     public ResponseEntity<Map<String, String>> deleteEntryById(@PathVariable String id) {
         Map<String, String> deleteEntryByIdResponse = new HashMap<>();
@@ -110,4 +132,6 @@ public class TodoController {
             return ResponseEntity.badRequest().body(deleteEntryByIdResponse);
         }
     }
+
+
 }

@@ -26,9 +26,11 @@ Create Filter function to show entries from specific user
 
 Build the PUT backend API for changing taskCompleted and change to correct URLadress in entries-function isTaskCompleted.
 
+Semi-completed
+
 ###
 
-
+Read up on MongoTemplate and how to write custom Queries.
 
 ###
 
