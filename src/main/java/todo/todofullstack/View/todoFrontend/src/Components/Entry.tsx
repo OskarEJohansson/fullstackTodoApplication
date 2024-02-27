@@ -4,11 +4,11 @@ import useGlobalState from "../GlobalState";
 
 // Ideomatisk namngivning; Kompoonenter är, de "gör" inte!
 
-interface EntriesInterface {
+interface EntryInterface {
   singleEntryParameter: NoteTypes;
 }
 
-const Entries = ({ singleEntryParameter }: EntriesInterface) => {
+const Entry = ({ singleEntryParameter }: EntryInterface) => {
   const apiFunctions = useGlobalState((state) => state);
   const URL = "http://localhost:8080/api";
 
@@ -23,25 +23,23 @@ const Entries = ({ singleEntryParameter }: EntriesInterface) => {
   };
 
   const isTaskCompleted = async () => {
-    const requestBody = !singleEntryParameter.taskCompleted;
     const response = await axios.put(
-      `${URL}/CREATE-ENDPOINT/${singleEntryParameter.id}`,
-      requestBody
+      `${URL}/update-entry/${singleEntryParameter.id}`
     );
 
     if (response.status === 200) {
       apiFunctions.updateEntry(
         singleEntryParameter.id,
-        singleEntryParameter.taskCompleted
+        !singleEntryParameter.taskCompleted
       );
     }
   };
 
   try {
     return (
-      <div className="entries">
+      <div className="entry">
         <p>User: {singleEntryParameter.user}</p>
-        <fieldset className="entries">
+        <fieldset className="entry">
           <div>
             <p>Task</p>
             <p>{singleEntryParameter.text}</p>
@@ -66,4 +64,4 @@ const Entries = ({ singleEntryParameter }: EntriesInterface) => {
   }
 };
 
-export default Entries;
+export default Entry;

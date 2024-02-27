@@ -10,7 +10,7 @@ const FetchAllDataComponent = () => {
 
   const fetchAllDataFunction = async () => {
     try {
-      const response = await axios.get(`${URL}/get-all-entries`);
+      const response = await axios.get(`${URL}//get-all-entries`);
 
       if (response.status === 200) {
         apiFunctions.setEntries(response.data.entries);

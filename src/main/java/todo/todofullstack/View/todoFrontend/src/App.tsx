@@ -1,9 +1,10 @@
 import "./App.css";
 import useGlobalState from "./GlobalState";
 import FetchAllDataComponent from "./Components/FetchAllData";
-import Entries from "./Components/Entries";
+import Entries from "./Components/Entry";
 import { useNavigate } from "react-router-dom";
 import HeaderNav from "./Components/Header";
+import Entry from "./Components/Entry";
 
 const App = () => {
   const apiFunctions = useGlobalState((state) => state);
@@ -19,7 +20,7 @@ const App = () => {
 
       <div>
         {apiFunctions.entries.map((singleEntryObject) => (
-          <Entries
+          <Entry
             key={singleEntryObject.id}
             singleEntryParameter={singleEntryObject}
           />
