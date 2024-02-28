@@ -10,11 +10,10 @@ interface EntryInterface {
 
 const Entry = ({ singleEntryParameter }: EntryInterface) => {
   const apiFunctions = useGlobalState((state) => state);
-  const URL = "http://localhost:8080/api";
 
   const deleteEntry = async () => {
     const response = await axios.delete(
-      `${URL}/delete-entry/${singleEntryParameter.id}`
+      `${apiFunctions.URL("/delete-entry/")}${singleEntryParameter.id}`
     );
 
     if (response.status === 200) {
@@ -24,7 +23,7 @@ const Entry = ({ singleEntryParameter }: EntryInterface) => {
 
   const isTaskCompleted = async () => {
     const response = await axios.put(
-      `${URL}/update-entry/${singleEntryParameter.id}`
+      `${apiFunctions.URL}/update-entry/${singleEntryParameter.id}`
     );
 
     if (response.status === 200) {

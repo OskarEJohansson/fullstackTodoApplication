@@ -9,8 +9,6 @@ const AddData = () => {
   const [newEntry, setNewEntry] = useState("");
   const navigate = useNavigate();
 
-  const URL = "http://localhost:8080/api";
-
   const saveNewEntry = async () => {
     if (!newEntry) return;
 
@@ -21,11 +19,15 @@ const AddData = () => {
       localDateTime: new Date().toISOString(),
     };
 
-    const response = await axios.post(`${URL}/save-entry`, requestBody, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.post(
+      apiFunctions.URL("/save-entry"),
+      requestBody,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (response.status === 200) {
       alert("Entry  saved!");

@@ -1,16 +1,59 @@
-:root {
+* {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  margin: auto;
   background-color: #242424;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body {
+  margin: 0;
+  display: flex;
+}
+
+.header-nav,
+.header-div {
+  display: flex;
+  justify-content: space-between; /* To split buttons to each side */
+  align-items: center;
+  position: sticky;
+
+  background-color: #1a1a1a; /* Adjust background color as needed */
+}
+
+.header-section-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-section-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.entry {
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  border-radius: 9px;
+  flex-direction: column;
+  margin-top: 20px; /* Add margin between entries */
+}
+
+.todo-component-title {
+  cursor: pointer;
+}
+
+.addData {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.app-btn-add {
+  margin-bottom: 20px;
 }
 
 a {
@@ -20,14 +63,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {

@@ -2,11 +2,14 @@
 
 ### 
 
-Add functionallity to taskCompleted
+FetchUserData
+
+ - Fix search button to set value as inpus.
+
+ - Reset value in placeholder
 
 ###
 
-Add update Entry functionallity
 
 ###
 
@@ -33,4 +36,6 @@ Semi-completed
 Read up on MongoTemplate and how to write custom Queries.
 
 ###
+
+
 

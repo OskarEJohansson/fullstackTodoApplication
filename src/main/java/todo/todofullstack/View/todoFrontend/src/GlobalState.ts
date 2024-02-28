@@ -7,10 +7,15 @@ interface GlobalStateInterface {
   removeEntry: (id: string) => void;
   updateEntry: (id: string, taskCompleted?: boolean) => void;
   setEntries: (setNewEntries: NoteTypes[]) => void;
+  setUserSpecificEntries: (setNewEntries: NoteTypes[]) => void;
+  URL: (path: string) => string;
+  userName: string;
+  setUserName: (setUserName: string) => void;
 }
 
 const useGlobalState = create<GlobalStateInterface>((set) => ({
   entries: [],
+  userName: "",
   addEntry: (saveNewEntry: NoteTypes) =>
     set((state) => ({
       entries: [...state.entries, saveNewEntry],
@@ -39,6 +44,18 @@ const useGlobalState = create<GlobalStateInterface>((set) => ({
   setEntries: (setNewEntries: NoteTypes[]) =>
     set(() => ({
       entries: setNewEntries,
+    })),
+
+  setUserSpecificEntries: (setNewEntries: NoteTypes[]) =>
+    set(() => ({
+      entries: setNewEntries,
+    })),
+
+  URL: (path: string) => `http://localhost:8080/api${path}`,
+
+  setUserName: (setUserName: string) =>
+    set(() => ({
+      userName: setUserName,
     })),
 }));
 

@@ -3,14 +3,12 @@ import useGlobalState from "../GlobalState";
 import { useEffect } from "react";
 useEffect;
 
-const URL = "http://localhost:8080/api";
-
 const FetchAllDataComponent = () => {
   const apiFunctions = useGlobalState((state) => state);
 
   const fetchAllDataFunction = async () => {
     try {
-      const response = await axios.get(`${URL}//get-all-entries`);
+      const response = await axios.get(apiFunctions.URL("/get-all-entries"));
 
       if (response.status === 200) {
         apiFunctions.setEntries(response.data.entries);
